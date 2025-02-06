@@ -4,8 +4,21 @@ le5le/iot-mocker 是乐吾乐物联网平台数据模拟工具。
 
 # 配置
 
-配置优先级：  
-./my.yaml > ./config.yaml
+默认配置
+
+```
+port: 7100
+mqttBroker:
+  host: 本地IP
+  tcpPort: 5883
+  tlsPort: 5884
+  wsPort: 5083
+  wssPort: 5084
+interval: 1
+
+```
+
+如果需要更改配置，在 iot-mocker(.exe)所在目录新建配置文件： config.yaml
 
 # 运行
 

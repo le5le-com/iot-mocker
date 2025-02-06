@@ -61,11 +61,6 @@ func Init() {
 func Save() error {
 	configPath := utils.CurrentPath + "config.yaml"
 
-	_, err := os.Stat(utils.CurrentPath + "my.yaml")
-	if err == nil || os.IsExist(err) {
-		configPath = utils.CurrentPath + "my.yaml"
-	}
-
 	dataFile, err := os.Create(configPath)
 	if err != nil {
 		return err
