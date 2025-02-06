@@ -1,0 +1,46 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+iot-mocker
+iot-mocker.*
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# App specific
+
+node_modules/
+dist/
+.idea/
+.vscode/
+vendor
+
+files/
+web/
+webs/
+logs/
+my.*
+my_*
+mock/**/*
+!mock/**.go
+
+cert/
+
+2d-components.js
+
+*.gob
+iot.json
+dashboard.json
+
+products.txt.*

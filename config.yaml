@@ -1,0 +1,21 @@
+name: 乐吾乐数据模拟服务
+version: 0.0.1
+# 监听端口
+port: 7100
+log:
+  level: 1 # 0 - debug ; 1 - info ; 2 - warn ; 3 - error
+  # filename: log.txt
+  maxSize: 300
+  maxBackups: 5
+  maxAge: 30
+mqttBroker:
+  tcpPort: 5883
+  tlsPort: 5884
+  wsPort: 5083
+  wssPort: 5084
+  maximumMessageExpiryInterval: 0
+  # auth:
+  #   - username: le5le
+  #     password: le5le123
+
+interval: 1
