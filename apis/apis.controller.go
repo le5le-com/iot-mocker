@@ -26,7 +26,7 @@ func getDevices(ctx context.Context, c *app.RequestContext) {
 		}
 	}
 
-	c.JSON(consts.StatusOK, devices)
+	c.JSON(consts.StatusOK, utils.Json{"list": devices, "total": 5})
 }
 
 func getDeviceProperties(ctx context.Context, c *app.RequestContext) {
@@ -40,7 +40,8 @@ func getDeviceProperties(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	c.JSON(consts.StatusOK, utils.Json{"list": CreateMqttProperties(params.DeviceId)})
+	properties := CreateMqttProperties(params.DeviceId)
+	c.JSON(consts.StatusOK, utils.Json{"list": properties, "total": len(properties)})
 }
 
 func GetAppMqtt(ctx context.Context, c *app.RequestContext) {
