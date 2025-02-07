@@ -18,4 +18,8 @@ mqttBroker:
   #   - username: le5le
   #     password: le5le123
 
+# tls证书路径
+certfile: ''
+keyfile: ''
+# 发送模拟数据的间隔时间（秒）
 interval: 1

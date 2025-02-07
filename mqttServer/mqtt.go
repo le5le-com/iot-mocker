@@ -2,6 +2,7 @@ package mqttServer
 
 import (
 	"context"
+	"crypto/tls"
 	"le5le/iot-mocker/config"
 	"le5le/iot-mocker/utils"
 	"log/slog"
@@ -95,6 +96,36 @@ func Init() {
 	if err != nil {
 		log.Fatal().Err(err).Msgf("MQTT监听Websocket端口%s失败", config.App.MqttBroker.WsPort)
 		return
+	}
+
+	// 加载TLS
+	if config.App.Certfile != "" {
+		cert, err := tls.LoadX509KeyPair(config.App.Certfile, config.App.Keyfile)
+		if err == nil {
+			tlsConfig := &tls.Config{
+				Certificates: []tls.Certificate{cert},
+			}
+
+			tcp := listeners.NewTCP(listeners.Config{
+				ID:        "tls",
+				Address:   ":" + config.App.MqttBroker.TlsPort,
+				TLSConfig: tlsConfig,
+			})
+			err = MqttBroker.AddListener(tcp)
+			if err != nil {
+				log.Fatal().Err(err).Msgf("MQTT监听TLS端口%s失败", config.App.MqttBroker.TlsPort)
+			}
+
+			ws := listeners.NewWebsocket(listeners.Config{
+				ID:        "wss",
+				Address:   ":" + config.App.MqttBroker.WssPort,
+				TLSConfig: tlsConfig,
+			})
+			err = MqttBroker.AddListener(ws)
+			if err != nil {
+				log.Fatal().Err(err).Msgf("MQTT监听WSS端口%s失败", config.App.MqttBroker.WssPort)
+			}
+		}
 	}
 
 	MqttBroker.Subscribe("le5le-iot/subscribe/ping", 1, callbackFn)

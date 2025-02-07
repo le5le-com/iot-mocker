@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"le5le/iot-mocker/utils"
+	"math/rand"
 )
 
 var datas = []utils.Json{}
@@ -23,35 +24,39 @@ func MakeDatas() {
 	}
 }
 
+func getRandId() string {
+	return fmt.Sprintf("00000001-0000-0000-0000-0000000%0*d", 5, rand.Intn(5))
+}
+
 func MakeData() utils.Json {
 	data := utils.Json{}
 
-	data["temperature"] = utils.GetRandInt(20, 30)
-	data["humidity"] = utils.GetRandInt(40, 60)
-	data["light"] = utils.GetRandInt(0, 100)
-	data["co2"] = utils.GetRandInt(300, 500)
-	data["pm25"] = utils.GetRandInt(0, 100)
-	data["aqi"] = utils.GetRandInt(0, 100)
+	data[getRandId()+"#temperature"] = utils.GetRandInt(20, 30)
+	data[getRandId()+"#humidity"] = utils.GetRandInt(40, 60)
+	data[getRandId()+"#light"] = utils.GetRandInt(0, 100)
+	data[getRandId()+"#co2"] = utils.GetRandInt(300, 500)
+	data[getRandId()+"#pm25"] = utils.GetRandInt(0, 100)
+	data[getRandId()+"#aqi"] = utils.GetRandInt(0, 100)
 
-	data["AcVoltage"] = utils.GetRandFloat(210, 230)
-	data["AcCurrent"] = utils.GetRandFloat(0, 1)
+	data[getRandId()+"#AcVoltage"] = utils.GetRandFloat(210, 230)
+	data[getRandId()+"#AcCurrent"] = utils.GetRandFloat(0, 1)
 
-	data["DcVoltage"] = utils.GetRandFloat(3, 12)
-	data["DcCurrent"] = utils.GetRandFloat(0, 1)
+	data[getRandId()+"#DcVoltage"] = utils.GetRandFloat(3, 12)
+	data[getRandId()+"#DcCurrent"] = utils.GetRandFloat(0, 1)
 
-	data["longitude"] = utils.GetRandFloat(114, 128)
-	data["latitude"] = utils.GetRandFloat(30, 32)
+	data[getRandId()+"#longitude"] = utils.GetRandFloat(114, 128)
+	data[getRandId()+"#latitude"] = utils.GetRandFloat(30, 32)
 
-	data["on"] = utils.GetRandBool()
-	data["state"] = utils.GetRandBool()
+	data[getRandId()+"#on"] = utils.GetRandBool()
+	data[getRandId()+"#state"] = utils.GetRandBool()
 
 	for i := 0; i < 5; i++ {
 		strI := fmt.Sprintf("%0*d", 3, i)
 
-		data["int"+strI] = utils.GetRandInt(10*i, 10*i+10)
-		data["float"+strI] = utils.GetRandFloat(10*float64(i), 10*float64(i)+10)
-		data["bool"+strI] = utils.GetRandBool()
-		data["text"+strI] = utils.GetRandString(5)
+		data[getRandId()+"#int"+strI] = utils.GetRandInt(10*i, 10*i+10)
+		data[getRandId()+"#float"+strI] = utils.GetRandFloat(10*float64(i), 10*float64(i)+10)
+		data[getRandId()+"#bool"+strI] = utils.GetRandBool()
+		data[getRandId()+"#text"+strI] = utils.GetRandString(5)
 	}
 
 	return data

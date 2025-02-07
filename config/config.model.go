@@ -8,6 +8,10 @@ type Config struct {
 	Port    string `json:"port" yaml:"port"`
 	CPU     int    `json:"cpu" yaml:"cpu"`
 
+	// SSL证书路径
+	Certfile string `json:"certfile" yaml:"certfile"`
+	Keyfile  string `json:"keyfile" yaml:"keyfile"`
+
 	Log struct {
 		Level      int8   `json:"level" yaml:"level"`
 		Filename   string `json:"filename" yaml:"filename"`

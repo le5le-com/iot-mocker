@@ -12,10 +12,6 @@ import (
 var numChars = []byte("0123456789")
 var chars = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
 
-func init() {
-	rand.New(rand.NewSource(time.Now().UnixNano()))
-}
-
 func GetRandHex(n uint) string {
 	var size uint
 	if n > 0 {
@@ -94,11 +90,8 @@ func GetRandBool() bool {
 func GetRandDate(min, max time.Time) time.Time {
 	delta := max.Unix() - min.Unix()
 
-	// 创建一个新的随机数生成器
-	rng := rand.New(rand.NewSource(time.Now().UnixNano()))
-
 	// 生成一个随机秒数
-	sec := rng.Int63n(delta) + min.Unix()
+	sec := rand.Int63n(delta) + min.Unix()
 
 	// 返回随机时间
 	return time.Unix(sec, 0)
