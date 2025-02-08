@@ -50,13 +50,16 @@ func MakeData() utils.Json {
 	data[getRandId()+"#on"] = utils.GetRandBool()
 	data[getRandId()+"#state"] = utils.GetRandBool()
 
-	for i := 0; i < 5; i++ {
-		strI := fmt.Sprintf("%0*d", 3, i)
+	for deviceIndex := 1; deviceIndex <= 5; deviceIndex++ {
+		id := fmt.Sprintf("00000001-0000-0000-0000-0000000%0*d", 5, deviceIndex)
 
-		data[getRandId()+"#int"+strI] = utils.GetRandInt(10*i, 10*i+10)
-		data[getRandId()+"#float"+strI] = utils.GetRandFloat(10*float64(i), 10*float64(i)+10)
-		data[getRandId()+"#bool"+strI] = utils.GetRandBool()
-		data[getRandId()+"#text"+strI] = utils.GetRandString(5)
+		for i := 0; i < 5; i++ {
+			strI := fmt.Sprintf("%0*d", 3, i)
+			data[id+"#int"+strI] = utils.GetRandInt(10*i, 10*i+10)
+			data[id+"#float"+strI] = utils.GetRandFloat(10*float64(i), 10*float64(i)+10)
+			data[id+"#bool"+strI] = utils.GetRandBool()
+			data[id+"#text"+strI] = utils.GetRandString(5)
+		}
 	}
 
 	return data
