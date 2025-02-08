@@ -158,9 +158,9 @@ func Start(ctx context.Context) {
 			interval++
 
 			// 10分钟没有ping，视为无订阅者
-			if time.Now().Unix()-LastPing > 10 {
+			if time.Now().Unix()-LastPing > 10*60 {
 				ConnectedCount = 0
-				log.Info().Msgf("没有订阅者")
+				// log.Info().Msgf("没有订阅者")
 			}
 
 			if interval >= config.App.Interval {
