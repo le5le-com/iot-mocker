@@ -16,8 +16,8 @@ import (
 
 func getDevices(ctx context.Context, c *app.RequestContext) {
 	devices := make([]*Device, 5)
-	for i := 1; i <= len(devices); i++ {
-		strI := fmt.Sprintf("%0*d", 5, i)
+	for i := 0; i < len(devices); i++ {
+		strI := fmt.Sprintf("%0*d", 5, i+1)
 		devices[i] = &Device{
 			Id:    "00000001-0000-0000-0000-0000000" + strI,
 			Name:  productNames[i],
