@@ -54,6 +54,7 @@ func GetAppMqtt(ctx context.Context, c *app.RequestContext) {
 		"wssPort":       config.App.MqttBroker.WssPort,
 		"username":      config.App.MqttBroker.Username,
 		"password":      config.App.MqttBroker.Password,
+		"path":          "/mqtt",
 	})
 }
 
